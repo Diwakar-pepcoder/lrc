@@ -47,13 +47,9 @@ public class Main {
         }
         return -1;
     }
-
-    public void put(K key, V value) throws Exception {
-        
+    public void put(K key, V value) throws Exception {   
         int bi = hashFunction(key);
-        
         int di = getIntBucket(bi, key);// -1 not exist
-        
         if(di == -1){
             HMNode node = new HMNode(key, value);
             buckets[bi].add(node);
@@ -69,11 +65,9 @@ public class Main {
     }
     
     private void reHash() throws Exception {
-        
         LinkedList<HMNode>[] oldbuckets = buckets;
         initbuckets(oldbuckets.length*2);
         size=0;
-        
         for(int i=0;i<oldbuckets.length;i++){
             for(HMNode node: oldbuckets[i]){
                 put(node.key, node.value);
